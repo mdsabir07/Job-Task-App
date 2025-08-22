@@ -2,11 +2,11 @@ import Link from 'next/link';
 
 export default function Footer() {
     return (
-        <footer className="bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-300 py-8 mt-12">
+        <footer className="py-8 mt-5">
             <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Site Info */}
                 <div>
-                    <h2 className="text-xl font-bold text-blue-600 mb-2">JobTask</h2>
+                    <h2 className="text-xl font-extrabold text-blue-600 mb-2">JobTask</h2>
                     <p>Your simple job task application built with Next.js.</p>
                 </div>
 

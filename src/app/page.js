@@ -12,15 +12,15 @@ export default function Home() {
     <>
       <main className="min-h-screen">
         <Hero />
-        <section className="max-w-6xl mx-auto px-4 py-8">
+        <section className="max-w-6xl mx-auto py-8">
           <h2 className="text-2xl font-bold mb-4">Featured Products</h2>
           <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
             {topProducts.map((product) => (
-              <div key={product.id} className="bg-white rounded shadow-md overflow-hidden">
+              <div key={product.id} className="rounded shadow-md overflow-hidden">
                 <img src={product.image} alt={product.name} className="w-full h-48 object-cover" />
                 <div className="p-4">
                   <h3 className="font-semibold">{product.name}</h3>
-                  <p className="text-sm text-gray-600">{product.description}</p>
+                  <p className="text-sm">{product.description}</p>
                   <p className="font-bold text-blue-600 mt-2">${product.price}</p>
                   <Link
                     href={`/products/${product.id}`}

@@ -14,7 +14,7 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
 
   const isActive = (href) =>
-    pathname === href ? 'text-blue-500 font-semibold' : 'text-gray-700';
+    pathname === href ? 'text-blue-500 font-semibold' : '';
 
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
@@ -58,7 +58,7 @@ export default function Navbar() {
       )}
       <button
         onClick={toggleTheme}
-        className="px-2 py-1 rounded text-sm border border-gray-300 dark:border-gray-600"
+        className="px-2 py-1 cursor-pointer rounded text-sm border border-gray-300 dark:border-gray-600"
       >
         {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
       </button>
@@ -66,10 +66,10 @@ export default function Navbar() {
   );
 
   return (
-    <nav className="bg-white dark:bg-gray-900 text-black dark:text-white shadow px-6 py-4">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <nav className="shadow px-6 py-4">
+      <div className="max-w-6xl mx-auto flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="text-xl font-bold text-blue-600">
+        <Link href="/" className="text-xl font-extrabold text-blue-600">
           JobTask
         </Link>
 
