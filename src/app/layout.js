@@ -4,6 +4,7 @@ import AuthProvider from "@/components/AuthProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ProductsProvider } from "@/context/ProductsContext";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,10 @@ export default function RootLayout({ children }) {
         <ProductsProvider>
           <AuthProvider>
             <Navbar /> {/* ✅ Navbar at the top */}
-            <main className="min-h-screen">{children}</main>
+            <main className="min-h-screen">
+              {children}
+              <Toaster /> 
+              </main>
             <Footer /> {/* ✅ Footer at the bottom */}
           </AuthProvider>
         </ProductsProvider>

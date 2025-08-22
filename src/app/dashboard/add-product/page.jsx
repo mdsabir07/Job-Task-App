@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useProducts } from '@/context/ProductsContext';
+import toast from 'react-hot-toast'; // <== import toast
 
 export default function AddProduct() {
   const { addProduct } = useProducts();
@@ -11,7 +12,7 @@ export default function AddProduct() {
     name: '',
     description: '',
     image: '',
-    price: '',  // <-- Added price here
+    price: '',
   });
 
   const handleChange = (e) => {
@@ -23,14 +24,16 @@ export default function AddProduct() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Optional: convert price to number
-    addProduct({ ...formData, price: parseFloat(formData.price) || 0 });
+    addProduct(formData);
+    toast.success('Product added successfully!');  // <== show toast
     router.push('/products'); // redirect to products page
   };
 
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4">
       <h2 className="text-xl font-bold mb-4">Add New Product</h2>
+
+      {/* ...inputs for name, description, image, price */}
 
       <input
         type="text"
@@ -68,8 +71,6 @@ export default function AddProduct() {
         value={formData.price}
         onChange={handleChange}
         required
-        min="0"
-        step="0.01"
         className="w-full border p-2 mb-4 rounded"
       />
 
