@@ -1,32 +1,28 @@
 'use client';
-import React, { createContext, useState, useContext } from 'react';
+
+import { createContext, useContext, useState } from 'react';
+import staticProducts from '@/lib/products';
 
 const ProductsContext = createContext();
 
-export function ProductsProvider({ children }) {
-  const [products, setProducts] = useState([
-    // Initial static products (if you want)
-    {
-      id: 1,
-      name: 'Sample Product 1',
-      description: 'This is a sample product.',
-      image: 'https://via.placeholder.com/150',
-    },
-    // Add more if you want
-  ]);
+export const ProductsProvider = ({ children }) => {
+    const [userProducts, setUserProducts] = useState([]);
 
-  // Function to add product
-  const addProduct = (product) => {
-    setProducts((prev) => [...prev, { ...product, id: Date.now() }]);
-  };
+    const addProduct = (product) => {
+        const newProduct = {
+            ...product,
+            id: Date.now().toString(), // generate unique id
+        };
+        setUserProducts((prev) => [newProduct, ...prev]);
+    };
 
-  return (
-    <ProductsContext.Provider value={{ products, addProduct }}>
-      {children}
-    </ProductsContext.Provider>
-  );
-}
+    const allProducts = [...userProducts, ...staticProducts];
 
-export function useProducts() {
-  return useContext(ProductsContext);
-}
+    return (
+        <ProductsContext.Provider value={{ addProduct, products: allProducts }}>
+            {children}
+        </ProductsContext.Provider>
+    );
+};
+
+export const useProducts = () => useContext(ProductsContext);

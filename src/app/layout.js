@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ProductsProvider } from "@/context/ProductsContext";
 import { Toaster } from "react-hot-toast";
+import { ThemeProvider } from "@/components/ThemeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,16 +26,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ProductsProvider>
-          <AuthProvider>
-            <Navbar /> {/* ✅ Navbar at the top */}
-            <main className="min-h-screen">
-              {children}
-              <Toaster /> 
+        <ThemeProvider>
+          <ProductsProvider>
+            <AuthProvider>
+              <Navbar />
+              <main className="min-h-screen">
+                {children}
+                <Toaster />
               </main>
-            <Footer /> {/* ✅ Footer at the bottom */}
-          </AuthProvider>
-        </ProductsProvider>
+              <Footer />
+            </AuthProvider>
+          </ProductsProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

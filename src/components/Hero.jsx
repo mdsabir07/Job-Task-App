@@ -1,6 +1,6 @@
 export default function Hero() {
     return (
-        <section className="bg-gray-100 dark:bg-gray-900 min-h-[60vh] flex items-center justify-center px-6 py-16">
+        <section className="dark:bg-gray-900 min-h-[60vh] flex items-center justify-center px-6 py-16">
             <div className="max-w-5xl mx-auto text-center">
                 <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white mb-4">
                     Welcome to JobTask

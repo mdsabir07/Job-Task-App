@@ -1,25 +1,25 @@
-const products = [
-    {
-        id: '1',
-        name: 'Product One',
-        description: 'This is the first product.',
-        price: 29.99,
-        image: 'https://via.placeholder.com/300x200',
-    },
-    {
-        id: '2',
-        name: 'Product Two',
-        description: 'This is the second product.',
-        price: 49.99,
-        image: 'https://via.placeholder.com/300x200',
-    },
-    {
-        id: '3',
-        name: 'Product Three',
-        description: 'This is the third product.',
-        price: 99.99,
-        image: 'https://via.placeholder.com/300x200',
-    },
+const staticProducts = [
+  {
+    id: 'p1',
+    name: 'Smartphone X',
+    description: 'Latest model with stunning features.',
+    image: '/imgs/speaker.jpg',
+    price: 899,
+  },
+  {
+    id: 'p2',
+    name: 'Wireless Headphones',
+    description: 'Noise-canceling over-ear headphones.',
+    image: '/imgs/headphones.jpg',
+    price: 199,
+  },
+  {
+    id: 'p3',
+    name: 'Gaming Laptop',
+    description: 'Powerful laptop for gaming and work.',
+    image: '/imgs/watch.jpg',
+    price: 1299,
+  },
 ];
 
-export default products;
+export default staticProducts;
