@@ -1,73 +1,81 @@
-// src/app/dashboard/add-product/page.jsx
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { redirect } from 'next/navigation';
+'use client';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useProducts } from '@/context/ProductsContext';
 
-export default async function AddProductPage() {
-    const session = await getServerSession(authOptions);
+export default function AddProduct() {
+  const { addProduct } = useProducts();
+  const router = useRouter();
 
-    // If not logged in, redirect to login
-    if (!session) {
-        redirect('/login');
-    }
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    image: '',
+    price: '',  // <-- Added price here
+  });
 
-    return (
-        <div className="max-w-xl mx-auto px-4 py-8">
-            <h1 className="text-2xl font-bold mb-6 text-center">Add a New Product</h1>
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-            {/* Product Form */}
-            <form className="space-y-4">
-                <div>
-                    <label className="block font-medium mb-1">Product Name</label>
-                    <input
-                        type="text"
-                        name="name"
-                        className="w-full border rounded px-3 py-2"
-                        placeholder="Enter product name"
-                        required
-                    />
-                </div>
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Optional: convert price to number
+    addProduct({ ...formData, price: parseFloat(formData.price) || 0 });
+    router.push('/products'); // redirect to products page
+  };
 
-                <div>
-                    <label className="block font-medium mb-1">Description</label>
-                    <textarea
-                        name="description"
-                        rows="4"
-                        className="w-full border rounded px-3 py-2"
-                        placeholder="Enter product description"
-                        required
-                    />
-                </div>
+  return (
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4">
+      <h2 className="text-xl font-bold mb-4">Add New Product</h2>
 
-                <div>
-                    <label className="block font-medium mb-1">Price ($)</label>
-                    <input
-                        type="number"
-                        name="price"
-                        className="w-full border rounded px-3 py-2"
-                        placeholder="Enter price"
-                        required
-                    />
-                </div>
+      <input
+        type="text"
+        name="name"
+        placeholder="Product Name"
+        value={formData.name}
+        onChange={handleChange}
+        required
+        className="w-full border p-2 mb-4 rounded"
+      />
 
-                <div>
-                    <label className="block font-medium mb-1">Image URL</label>
-                    <input
-                        type="url"
-                        name="image"
-                        className="w-full border rounded px-3 py-2"
-                        placeholder="Enter image link"
-                        required
-                    />
-                </div>
+      <textarea
+        name="description"
+        placeholder="Product Description"
+        value={formData.description}
+        onChange={handleChange}
+        required
+        className="w-full border p-2 mb-4 rounded"
+      />
 
-                <button
-                    type="submit"
-                    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-                >
-                    Add Product
-                </button>
-            </form>
-        </div>
-    );
+      <input
+        type="text"
+        name="image"
+        placeholder="Image URL"
+        value={formData.image}
+        onChange={handleChange}
+        required
+        className="w-full border p-2 mb-4 rounded"
+      />
+
+      <input
+        type="number"
+        name="price"
+        placeholder="Price"
+        value={formData.price}
+        onChange={handleChange}
+        required
+        min="0"
+        step="0.01"
+        className="w-full border p-2 mb-4 rounded"
+      />
+
+      <button type="submit" className="bg-blue-600 text-white py-2 px-4 rounded">
+        Add Product
+      </button>
+    </form>
+  );
 }
