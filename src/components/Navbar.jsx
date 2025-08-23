@@ -79,14 +79,14 @@ export default function Navbar() {
         </ul>
 
         {/* Mobile Menu Toggle */}
-        <button onClick={toggleMenu} className="md:hidden" aria-label="Toggle Menu">
+        <button onClick={toggleMenu} className="md:hidden cursor-pointer" aria-label="Toggle Menu">
           {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden px-4 pb-4 space-y-2 bg-white">
+        <div className="md:hidden px-4 pb-4 space-y-2">
           <ul className="space-y-2">{<MenuLinks />}</ul>
         </div>
       )}
