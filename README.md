@@ -1,6 +1,6 @@
 # Job Task App
 
-A responsive job task management application built using **Next.js App Router (v13+)**, **Tailwind CSS**, and **NextAuth**. This app supports Google authentication, light/dark theme toggling, and is deployed live on Vercel.
+A responsive job task management application built using **Next.js App Router (v15+)**, **Tailwind CSS**, and **NextAuth**. This app supports Google authentication, light/dark theme toggling, and is deployed live on Vercel.
 
 ---
 
